@@ -1,0 +1,15 @@
+plugins {
+    id 'io.nextflow.nextflow-plugin' version '1.0.0-beta.10'
+}
+
+version = '0.1.0'
+
+nextflowPlugin {
+    nextflowVersion = '24.04.1'
+
+    provider = 'Pawsey Supercomputing Research Centre'
+    className = 'pawsey.plugin.NfSetonixPlugin'
+    extensionPoints = [
+        'pawsey.plugin.NfSetonixFactory'
+    ]
+}
