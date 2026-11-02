@@ -14,14 +14,26 @@ job state, and exit code.
 On a system with internet access:
 
 ```bash
-git clone <repository-url> nf-setonix
+git clone https://github.com/tlitfin/nf-setonix.git
 cd nf-setonix
+
+# Keep the installer and Nextflow runtime pointed at the same plugin directory.
+module load nextflow/25.04.6
+
+# On Setonix, keep the Gradle cache out of $HOME.
+if [ -n "${MYSCRATCH:-}" ]; then
+    export GRADLE_USER_HOME="$MYSCRATCH/.gradle"
+fi
+
 ./gradlew check
 make install
 ```
 
+Be sure to load nextflow before installing the plugin to ensure installation in the location expected at run time.
+
 Build and install the plugin before transferring it to Setonix if dependencies
-cannot be downloaded there.
+cannot be downloaded there. Re-run `make install` after changing the plugin
+source.
 
 ## Nextflow configuration
 
